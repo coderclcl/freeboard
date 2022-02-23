@@ -1,0 +1,103 @@
+body{
+    color:#2e2c2a;
+}
+
+.title-wrap {text-align: center;}
+
+.title {
+    font-size: 200px;
+    font-family: "Last Ninja", Impact, fantasy;
+}
+
+.describe {
+    font-size: 50px;
+    font-family: "Comic Sans", "Apple Chancery", cursive;
+}
+
+.writer{
+    margin: 50px;
+    clear: both;
+}
+
+
+.btn{
+    border: none;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    float: right;
+}
+
+.btn {
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .btn:after {
+    position: absolute;
+    content: " ";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     background-color: #1fd1f9;
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+    transition: all 0.3s ease;
+  }
+  .btn:hover {
+    background: transparent;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    color: #fff;
+  }
+  .btn:hover:after {
+    -webkit-transform: scale(2) rotate(180deg);
+    transform: scale(2) rotate(180deg);
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  }
+
+  .btn-wrapper{
+      margin: 0 auto;
+      width: 800px;
+      height: 80px;
+  }
+
+
+#writeBox{
+    width: 800px;
+    height: 120px;
+    resize: none;
+}
+
+.messages {
+    width: 900px;
+    height: 300px;
+    padding: 50px;
+    margin: 0 auto;
+    border: 1px solid transparent;
+}
+
+.msg-content {
+    margin: 20px 30px;
+    padding: 20px;
+    border : 1px solid #2e2c2a;
+    border-radius: 5px;
+    float: left;
+    width: 20%;
+    height: 50px;
+}

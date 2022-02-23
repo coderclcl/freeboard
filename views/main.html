@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="title-wrap">
+        <div class="title">
+            <div> FREE BOARD </div>
+        </div>
+        <div class="describe">
+            <div> Write down your message </div>
+        </div>
+        <div class="messages">
+          <!-- 여기 메시지 불러오기 -->
+          {% for message in messages %}
+          <div class="msg-content">
+            <input type="hidden" value="{{message.id}}" class="post-id">
+            <button class="update-btn" >/</button> <!-- 수정 버튼 -->
+            <button class="delete-btn" >x</button> <!-- 삭제 버튼 -->
+            <div>{{message.content}}</div>
+          </div>
+          
+          {% endfor %}
+        </div>
+
+        <div class="writer">
+
+          <!-- 여기 메시지 작성 -->
+          <form id="writer-form" action="/post" method="post">
+            <textarea id="writeBox" name="content" maxlength="100">
+            </textarea>
+            <div class="btn-wrapper">
+              <button type="submit" class="btn">POST</button>
+            </div>
+          </form>
+          
+          
+        </div>
+        
+        
+        <footer>
+          Made by&nbsp;
+          <a href="https://github.com/coderclcl" target="_blank">Kelly</a>
+        </footer>
+      </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+      // delete 버튼 구현 시작 
+      document.querySelectorAll('.delete-btn').forEach(function(tag){
+        tag.addEventListener('click', function(){
+          // alert("삭제");
+          
+          // parentNode는 나를 감싼 한 계층 껍데기 div인듯 (두 계층 위는 검사 불가)
+          const postId = tag.parentNode.querySelector('.post-id').value;
+          // alert(postId);
+          
+          // ' 아니고 ` 임 주의(백스쿼트) 
+          axios.delete(`/post/${postId}`)
+            .then(() => {
+              location.reload();
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        });
+      });
+      // delete 버튼 구현 끝 
+
+
+      // update 버튼 구현 시작 
+      document.querySelectorAll('.update-btn').forEach(function(tag){
+        tag.addEventListener('click', function(){
+
+          const newContent = prompt('수정할 내용 적으시오');
+          // alert(newContent);
+
+          const postId = tag.parentNode.querySelector('.post-id').value;
+
+          axios.patch(`/post/${postId}/${newContent}`)
+            .then(() => {
+              location.reload();
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        });
+      });
+      // update 버튼 구현 끝 
+
+
+    </script>
+
+
+
+
+  </body>
+</html>
